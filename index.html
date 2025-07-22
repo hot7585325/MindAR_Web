@@ -3,7 +3,6 @@
 <head>
   <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
   <script src="https://raw.githack.com/fcor/arjs-gestures/master/dist/gestures.js"></script>
-  <script src="https://raw.githack.com/fcor/arjs-gestures/master/dist/gestures.js"></script>
 
   <script>
     document.addEventListener("DOMContentLoaded", () => {
@@ -36,8 +35,8 @@
     <button id="change-color">改變狀態</button>
   </div>
 
-  <a-scene gesture-detector>
-    <a-entity gesture-handler id="modelGroup" position="0 -0.1 0" scale=".05 .05 .05" >
+  <a-scene >
+    <a-entity look-controls id="modelGroup" position="0 -0.1 0" scale=".05 .05 .05" >
       <a-gltf-model src="ar_all.gltf"></a-gltf-model>
     </a-entity>
     <a-camera position="0 0 .2" look-controls-enabled="false"></a-camera>
