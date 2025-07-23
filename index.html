@@ -17,8 +17,8 @@
 <body>
 
   <a-scene color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false"
-    device-orientation-permission-ui="enabled: false">
-    <a-entity id="modelGroup" position="0 -0.1 0" scale=".05 .05 .05" touch-drag-rotate-scale="rotationCoordinate:world">
+    device-orientation-permission-ui="enabled: false" mindar-image="imageTargetSrc: targets.mind;">
+    <a-entity id="modelGroup" position="0 -0.1 0" scale=".05 .05 .05" touch-drag-rotate-scale="rotationCoordinate:world" mindar-image-target="targetIndex: 0">
       <a-gltf-model src="ar_all.gltf"></a-gltf-model>
     </a-entity>
     <a-camera position="0 0 .2" look-controls-enabled="false"></a-camera>
@@ -27,5 +27,4 @@
 
 </html>
 
-mindar-image-target="targetIndex: 0"
-mindar-image="imageTargetSrc: targets.mind;"
+
