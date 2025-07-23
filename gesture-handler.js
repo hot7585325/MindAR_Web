@@ -46,6 +46,7 @@ AFRAME.registerComponent("gesture-handler", {
         event.detail.positionChange.x * this.data.rotationFactor;
       this.el.object3D.rotation.x +=
         event.detail.positionChange.y * this.data.rotationFactor;
+        console.log("旋轉中") //TODO 標記觸控旋轉
     }
   },
 
@@ -62,6 +63,7 @@ AFRAME.registerComponent("gesture-handler", {
       this.el.object3D.scale.x = this.scaleFactor * this.initialScale.x;
       this.el.object3D.scale.y = this.scaleFactor * this.initialScale.y;
       this.el.object3D.scale.z = this.scaleFactor * this.initialScale.z;
+      console.log("縮放中") //TODO 標記觸控縮放
     }
   },
 });
