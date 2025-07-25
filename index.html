@@ -5,25 +5,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+  <!-- mindAR CDN -->
   <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
+  <!-- glb動畫的cdn -->
   <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.6.0/dist/aframe-extras.min.js"></script>
   <script src="GeminiCtrl.js">  </script>
-  <script src="OPACtrl.js"> </script>
+  <script src="opa-ctrl.js"> </script>
 
 </head>
 
 <body>
   <a-scene color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false"
     device-orientation-permission-ui="enabled: false"
-    mindar-image="imageTargetSrc:targets.mind;  uiLoading:no; uiScanning:no">
-
-
-
-    <!-- 測試自己組件用 -->
-    <a-entity is-active-component>
-      <a-box></a-box>
-    </a-entity>
-
+    mindar-image="imageTargetSrc:targets.mind;  uiLoading:no; uiScanning:no" cursor="rayOrigin: mouse" raycaster="objects: .clickable"
+>
 
     <!-- ar.png= 工具模型 -->
     <a-entity id="modelGroup" position="0 -0.1 0" scale=".05 .05 .05" mindar-image-target="targetIndex: 0">
@@ -60,7 +55,7 @@
     <!-- TEAS.jpg :Monkey 觸控行為-->
     <a-entity id="modelGroup" position="0 -0.1 0" scale=".05 .05 .05" mindar-image-target="targetIndex: 5">
       <a-entity touch-drag-rotate-scale="rotationCoordinate:world">
-        <a-gltf-model src="Monkey.glb"></a-gltf-model>
+        <a-gltf-model src="Monkey.glb" toggle-glb-animation="clip:Character1_Reference|Take 001|BaseLayer"  class="clickable"></a-gltf-model>
       </a-entity>
     </a-entity>
 
