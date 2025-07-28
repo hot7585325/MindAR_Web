@@ -101,6 +101,7 @@ AFRAME.registerComponent('js-ani', {
 
     this.el.setAttribute("animation-mixer", { clip: "Character1_Reference|Take 001|BaseLayer", duration: 10 ,timeScale:0})  //把其他組件加入
     window.addEventListener("click", this.activeAni.bind(this))
+    window.addEventListener("touchstart", this.activeAni.bind(this))
   },
 
   //控制開關
