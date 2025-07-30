@@ -1,5 +1,3 @@
-const { Vector3 } = require("three");
-
 // glb模型動畫名稱打印
 AFRAME.registerComponent('log-clip-names', {
   init: function () {
@@ -116,3 +114,19 @@ AFRAME.registerComponent('js-ani', {
   }
 });
 
+
+//重製旋轉
+AFRAME.registerComponent('js-reset', {
+  init: function () {
+    this.resetRotate = this.resetRotate.bind(this);
+    window.addEventListener('touchstart', this.resetRotate);
+  },
+  remove: function () {
+    window.removeEventListener('touchstart', this.resetRotate);
+  },
+  resetRotate: function (event) {
+    if (event.touches.length === 3) {
+      this.el.object3D.rotation.set(0, 0, 0);
+    }
+  }
+});
