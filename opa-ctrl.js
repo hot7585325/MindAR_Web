@@ -1,3 +1,4 @@
+const { Vector3 } = require("three");
 
 // glb模型動畫名稱打印
 AFRAME.registerComponent('log-clip-names', {
@@ -91,7 +92,7 @@ AFRAME.registerComponent('toggle-glb-animation', {
 
 
 
-
+//觸控觸發動畫
 AFRAME.registerComponent('js-ani', {
   schema:
   {
@@ -99,7 +100,7 @@ AFRAME.registerComponent('js-ani', {
   },
   init: function () {
 
-    this.el.setAttribute("animation-mixer", { clip: "Character1_Reference|Take 001|BaseLayer", duration: 10 ,timeScale:0})  //把其他組件加入
+    this.el.setAttribute("animation-mixer", { clip: "Character1_Reference|Take 001|BaseLayer", duration: 10, timeScale: 0 })  //把其他組件加入
     window.addEventListener("click", this.activeAni.bind(this))
     window.addEventListener("touchstart", this.activeAni.bind(this))
   },
@@ -114,3 +115,16 @@ AFRAME.registerComponent('js-ani', {
 
   }
 });
+
+//回到原點
+AFRAME.registerComponent('js-reset', {
+  init: function () {
+
+    window.addEventListener("touchstart", (enent) => {
+      if (enent.touches.length === 3) {
+        this.el.object3D.rotation = Vector3(0, 0, 0);
+      }
+    })
+  }
+});
+
