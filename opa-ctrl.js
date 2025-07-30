@@ -116,17 +116,3 @@ AFRAME.registerComponent('js-ani', {
   }
 });
 
-//回到原點
-AFRAME.registerComponent('js-reset', {
-  init: function () {
-
-    window.addEventListener("touchstart",this.resetRote.bind(this))
-  },
-
-  resetRote: function (event) {
-  if (event.touches.length === 3) {
-        this.el.object3D.rotation.set(0,0,0)
-      }
-    }
-  });
-
