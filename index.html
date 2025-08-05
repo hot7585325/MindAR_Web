@@ -9,56 +9,76 @@
   <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
   <!-- glb動畫的cdn -->
   <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.6.0/dist/aframe-extras.min.js"></script>
-  <script src="GeminiCtrl.js">  </script>
   <script src="opa-ctrl.js"> </script>
 
+  <a-assets>
+    <a-asset-item id="Monkey" src="Monkey.glb"></a-asset-item>
+    <audio id="MonkeySay" src="MonkeySay.mp3"></audio>
+  </a-assets>
 </head>
 
 <body>
   <a-scene color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false"
-    device-orientation-permission-ui="enabled: false"
-    mindar-image="imageTargetSrc:targets.mind;" cursor="rayOrigin: mouse" raycaster="objects: .clickable"
->
+    device-orientation-permission-ui="enabled: false" mindar-image="imageTargetSrc:targets.mind; maxTrack: 6"
+    cursor="rayOrigin: mouse" raycaster="objects: .clickable" getchild>
+
+    <!-- 聲音組件會與mindar-image-target，所以不掛載在同一個物件上(預計透過事件通知) -->
+    <a-entity active-sound> </a-entity>
+
 
     <!-- ar.png= 工具模型 -->
-    <a-entity id="modelGroup" position="0 -0.1 0" scale=".05 .05 .05" mindar-image-target="targetIndex: 0">
-      <a-entity touch-drag-rotate-scale="rotationCoordinate:world" js-reset>
+    <a-entity id="modelGroup1" position="0 -0.1 0" scale=".05 .05 .05" mindar-image-target="targetIndex: 0"
+      targetfound-global>
+      <a-entity touch-drag-rotate-scale="rotationCoordinate:world">
         <a-gltf-model src="ar_all.gltf"></a-gltf-model>
       </a-entity>
     </a-entity>
     <!-- AR12.jpg :Monkey  晃動測試-->
-    <a-entity id="modelGroup" position="0 -0.1 0" scale=".05 .05 .05" mindar-image-target="targetIndex: 1 filterMinCF: 0.2; filterBeta: 0.1; warmupTolerance: 0.2;missTolerance: 4;">
-      <a-entity touch-drag-rotate-scale="rotationCoordinate:world" js-reset>
+    <a-entity id="modelGroup2" position="0 -0.1 0" scale=".05 .05 .05"
+      mindar-image-target="targetIndex: 1 filterMinCF: 0.2; filterBeta: 0.1; warmupTolerance: 0.2;missTolerance: 4;"
+      targetfound-global>
+      <a-entity touch-drag-rotate-scale="rotationCoordinate:world">
         <a-gltf-model src="Monkey.glb" animation-mixer></a-gltf-model>
       </a-entity>
     </a-entity>
     <!-- pattern-ar-1.png :Monkey  晃動測試-->
-    <a-entity id="modelGroup" position="0 -0.1 0" scale=".05 .05 .05" mindar-image-target="targetIndex: 2 filterMinCF: 0.2; filterBeta: 0.1; warmupTolerance: 0.2;missTolerance: 4;">
-      <a-entity touch-drag-rotate-scale="rotationCoordinate:world" js-reset>
+    <a-entity id="modelGroup3" position="0 -0.1 0" scale=".05 .05 .05"
+      mindar-image-target="targetIndex: 2 filterMinCF: 0.2; filterBeta: 0.1; warmupTolerance: 0.2;missTolerance: 4;"
+      targetfound-global>
+      <a-entity touch-drag-rotate-scale="rotationCoordinate:world">
         <a-gltf-model src="Monkey.glb" animation-mixer></a-gltf-model>
       </a-entity>
     </a-entity>
     <!-- pattern-ar-4.png=sphere  辨識度測試-->
-    <a-entity id="modelGroup" position="0 -0.1 0" scale=".01 .01 .01" mindar-image-target="targetIndex: 3 filterMinCF: 0.2; filterBeta: 0.1; warmupTolerance: 0.2;missTolerance: 4;">
-      <a-entity touch-drag-rotate-scale="rotationCoordinate:world" js-reset>
-        <a-sphere> </a-sphere>>
+    <a-entity id="modelGroup4" position="0 -0.1 0" scale=".01 .01 .01"
+      mindar-image-target="targetIndex: 3 filterMinCF: 0.2; filterBeta: 0.1; warmupTolerance: 0.2;missTolerance: 4;"
+      targetfound-global>
+      <a-entity touch-drag-rotate-scale="rotationCoordinate:world">
+        <!-- <a-sphere> </a-sphere>> -->
+        <a-gltf-model src="A.glb"></a-gltf-model>
       </a-entity>
     </a-entity>
 
     <!-- pattern-ar-6.png =Cylinder 辨識度測試-->
-    <a-entity id="modelGroup" position="0 -0.1 0" scale=".01 .01 .01" mindar-image-target="targetIndex: 4 filterMinCF: 0.2; filterBeta: 0.1; warmupTolerance: 0.2;missTolerance: 4;">
-      <a-entity touch-drag-rotate-scale="rotationCoordinate:world" js-reset>
-        <a-cylinder></a-cylinder>
+    <a-entity id="modelGroup5" position="0 -0.1 0" scale=".01 .01 .01"
+      mindar-image-target="targetIndex: 4 filterMinCF: 0.2; filterBeta: 0.1; warmupTolerance: 0.2;missTolerance: 4;"
+      targetfound-global>
+      <a-entity touch-drag-rotate-scale="rotationCoordinate:world">
+        <!-- <a-cylinder></a-cylinder> -->
+        <a-gltf-model src="OPA.glb"></a-gltf-model>
       </a-entity>
     </a-entity>
 
     <!-- TEAS.jpg :Monkey 觸控行為-->
-    <a-entity id="modelGroup" position="0 -0.1 0" scale=".05 .05 .05" mindar-image-target="targetIndex: 5  filterMinCF: 0.2; filterBeta: 0.1; warmupTolerance: 0.2;missTolerance: 4;">
-      <a-entity touch-drag-rotate-scale="rotationCoordinate:world" js-reset>
-        <a-gltf-model src="Monkey.glb" toggle-glb-animation="clip:Character1_Reference|Take 001|BaseLayer"  class="clickable" js-ani></a-gltf-model>
+     <!-- 降低 filterMinCF 的值可以減少抖動，而增加 filterBeta 的值可以減少延遲 (預設值分別為 0.001 和 1000)-->
+    <a-entity id="modelGroup6" position="0 -0.1 0" scale=".05 .05 .05"
+      mindar-image-target="targetIndex: 5  filterMinCF: 0.1; filterBeta: 0.01; warmupTolerance: 0.2; missTolerance: 4;"   
+      targetfound-global>
+      <a-entity touch-drag-rotate-scale="rotationCoordinate:world" rote-reset>
+
+        <a-gltf-model src="#Monkey" active-ani></a-gltf-model>
       </a-entity>
     </a-entity>
-
     <a-camera position="0 0 .2" look-controls-enabled="false"></a-camera>
   </a-scene>
 </body>
