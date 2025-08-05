@@ -22,7 +22,7 @@ AFRAME.registerComponent('rote-reset',
     init: function () {
       window.addEventListener("targetfound-global-event", (event) => {
         this.el.setAttribute("rotation", "90 0 0");
-        this.el.setAttribute("scale","1 1 1")
+        this.el.setAttribute("scale","3 3 3")
         console.log("偵測到了，重置旋轉");
       })
     }
@@ -69,7 +69,7 @@ AFRAME.registerComponent('active-sound', {
     IsActive: { type: 'boolean', default: false } // 初始化完成後是否自動播放
   },
   init: function () {
-    this.el.setAttribute("sound", "src:#MonkeySay; loop:true")  //增加Sound組件，
+    this.el.setAttribute("sound", "src:#MonkeySay; loop:true volume:1" )  //增加Sound組件，
     console.log("音量=" + this.el.components.sound.volume);
 
     window.addEventListener("targetlost-global-event", (event) => {
