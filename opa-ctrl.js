@@ -17,20 +17,25 @@ AFRAME.registerComponent('targetfound-global', {
 //#endregion
 
 //#region  重置旋轉(接收父物件的全域事件)
-AFRAME.registerComponent('rote-reset',
+AFRAME.registerComponent('reset-transform',
   {
+    schema:
+    {
+      rrotation: { type: 'vec3', default: {x:90,y:0,z:0} } ,
+      rscale: {type:"vec3",default: {x:1,y:1,z:1}}
+    },
     init: function () {
       window.addEventListener("targetfound-global-event", (event) => {
-        this.el.setAttribute("rotation", "90 0 0");
-        this.el.setAttribute("scale", "3 3 3")
+        this.el.setAttribute("rotation",this.data.rrotation);
+        this.el.setAttribute("scale", this.data.rscale)
         console.log("偵測到了，重置旋轉");
 
-        const info = document.querySelector("#info");
+        const infoscale = document.querySelector("#infoscale");
 
       })
     },
     tick: function () {
-      info.textContent = "縮放=" + this.el.object3D.scale.x;
+      infoscale.textContent = "縮放=" + this.el.object3D.scale.x;
     }
   });
 //#endregion
@@ -82,6 +87,8 @@ AFRAME.registerComponent('active-sound', {
 
     window.addEventListener("touchstart", () => { this.data.IsActive = !this.data.IsActive; this.el.setAttribute('active-sound', "IsActive", this.data.IsActive) });
     window.addEventListener("click", () => { this.data.IsActive = !this.data.IsActive; this.el.setAttribute('active-sound', "IsActive", this.data.IsActive) });
+
+    const infosound = document.querySelector("#infosound");
   },
 
 
@@ -97,7 +104,8 @@ AFRAME.registerComponent('active-sound', {
   },
 
   tick: function () {
-    console.log("sound=" + this.el.components.sound);
+    const sd=this.el.getAttribute("sound");
+    infosound.textContent = "sound="  + this.el.components.sound+" /狀態="+this.data.IsActive +" /音量"+sd.volume+" /來源"+sd.src;
   }
 
 });
