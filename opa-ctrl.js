@@ -22,9 +22,15 @@ AFRAME.registerComponent('rote-reset',
     init: function () {
       window.addEventListener("targetfound-global-event", (event) => {
         this.el.setAttribute("rotation", "90 0 0");
-        this.el.setAttribute("scale","3 3 3")
+        this.el.setAttribute("scale", "3 3 3")
         console.log("偵測到了，重置旋轉");
+
+        const info = document.querySelector("#info");
+
       })
+    },
+    tick: function () {
+      info.textContent = "縮放=" + this.el.object3D.scale.x;
     }
   });
 //#endregion
@@ -69,36 +75,24 @@ AFRAME.registerComponent('active-sound', {
     IsActive: { type: 'boolean', default: false } // 初始化完成後是否自動播放
   },
   init: function () {
-    this.el.setAttribute("sound", "src:#MonkeySay; loop:true volume:1" )  //增加Sound組件，
+    this.el.setAttribute("sound", "src:#MonkeySay; loop:true volume:1")  //增加Sound組件，
     console.log("音量=" + this.el.components.sound.volume);
 
-    window.addEventListener("targetlost-global-event", (event) => {
-      this.el.components.sound.stopSound();
+    window.addEventListener("targetlost-global-event", (event) => { this.el.components.sound.stopSound(); console.log("暫停聲音"); })
 
-      console.log("暫停聲音");
-    })
-
-    window.addEventListener("click", () => {
-
-      this.data.IsActive = !this.data.IsActive;
-      this.el.setAttribute('active-sound', "IsActive", this.data.IsActive)
-
-      // 
-      // console.log("播放聲音");
-    });
+    window.addEventListener("touchstart", () => { this.data.IsActive = !this.data.IsActive; this.el.setAttribute('active-sound', "IsActive", this.data.IsActive) });
+    window.addEventListener("click", () => { this.data.IsActive = !this.data.IsActive; this.el.setAttribute('active-sound', "IsActive", this.data.IsActive) });
   },
 
 
   update: function (oldDate) {
     if (oldDate != this.data) {
       console.log("聲音狀態=" + this.data.IsActive);
-      if (this.data.IsActive) 
-      {
+      if (this.data.IsActive) {
         this.el.components.sound.playSound();
-      }else
-        {
-          this.el.components.sound.pauseSound();
-        }
+      } else {
+        this.el.components.sound.pauseSound();
+      }
     }
   },
 

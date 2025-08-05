@@ -18,8 +18,9 @@
 </head>
 
 <body>
+  
   <a-scene color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false"
-    device-orientation-permission-ui="enabled: false" mindar-image="imageTargetSrc:targets.mind; maxTrack: 6"
+    device-orientation-permission-ui="enabled: false" mindar-image="imageTargetSrc:targets.mind; maxTrack: 1"
     cursor="rayOrigin: mouse" raycaster="objects: .clickable" getchild>
 
     <!-- 聲音組件會與mindar-image-target，所以不掛載在同一個物件上(預計透過事件通知) -->
@@ -79,6 +80,7 @@
       </a-entity>
     </a-entity>
     <a-camera position="0 0 .2" look-controls-enabled="false"></a-camera>
+    <h1 id="info" style="position: fixed; z-index:100px;">數值= </h1>
   </a-scene>
 </body>
 
