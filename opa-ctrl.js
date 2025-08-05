@@ -88,7 +88,9 @@ AFRAME.registerComponent('active-sound', {
     window.addEventListener("touchstart", () => { this.data.IsActive = !this.data.IsActive; this.el.setAttribute('active-sound', "IsActive", this.data.IsActive) });
     window.addEventListener("click", () => { this.data.IsActive = !this.data.IsActive; this.el.setAttribute('active-sound', "IsActive", this.data.IsActive) });
 
+    const soundbtn=document.querySelector("#soundbtn");
     const infosound = document.querySelector("#infosound");
+    soundbtn.addEventListener("click",()=> this.el.components.sound.playSound(),)
   },
 
 

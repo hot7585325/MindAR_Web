@@ -18,7 +18,11 @@
 </head>
 
 <body>
-
+    <div style="position: fixed; z-index:1000;" >
+      <h1 id=infoscale> 數值= </h1>
+      <h1 id=infosound> 音效撥放= </h1>
+      <button id=soundbtn>音效撥放 </button>
+    </div>
   <a-scene color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false"
     device-orientation-permission-ui="enabled: false" mindar-image="imageTargetSrc:targets.mind; maxTrack: 1"
     cursor="rayOrigin: mouse" raycaster="objects: .clickable" getchild>
@@ -80,11 +84,6 @@
       </a-entity>
     </a-entity>
     <a-camera position="0 0 .2" look-controls-enabled="false"></a-camera>
-    <div style="position: fixed; z-index:100px;" >
-      <h1 id=infoscale> 數值= </h1>
-      <h1 id=infosound> 音效撥放= </h1>
-    </div>
-
   </a-scene>
 </body>
 
