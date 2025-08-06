@@ -24,8 +24,8 @@
 
 <body>
   <div style="position: fixed; z-index:1000;">
-    <h1 id=infoscale> 數值= </h1>
-    <button id=soundbtn>音效撥放 </button>
+    <!-- <h1 id=infoscale> 數值= </h1> -->
+    <!-- <button id=soundbtn>音效撥放 </button> -->
   </div>
   <a-scene color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false"
     device-orientation-permission-ui="enabled: false" mindar-image="imageTargetSrc:targets.mind; maxTrack: 1"
@@ -38,10 +38,9 @@
     <!-- </a-assets> -->
 
 
-    
+
     <!-- 聲音組件會與mindar-image-target衝突，所以不掛載在同一個物件上(預計透過事件通知) -->
     <!-- <a-entity active-sound> </a-entity> -->
-
 
     <!-- ar.png= 工具模型 -->
     <a-entity id="modelGroup1" position="0 -0.1 0" scale=".01 .01 .01" mindar-image-target="targetIndex: 0"
