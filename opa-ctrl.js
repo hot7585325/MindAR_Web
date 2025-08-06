@@ -21,12 +21,12 @@ AFRAME.registerComponent('reset-transform',
   {
     schema:
     {
-      rrotation: { type: 'vec3', default: {x:90,y:0,z:0} } ,
-      rscale: {type:"vec3",default: {x:1,y:1,z:1}}
+      rrotation: { type: 'vec3', default: { x: 90, y: 0, z: 0 } },
+      rscale: { type: "vec3", default: { x: 1, y: 1, z: 1 } }
     },
     init: function () {
       window.addEventListener("targetfound-global-event", (event) => {
-        this.el.setAttribute("rotation",this.data.rrotation);
+        this.el.setAttribute("rotation", this.data.rrotation);
         this.el.setAttribute("scale", this.data.rscale)
         console.log("偵測到了，重置旋轉");
 
@@ -80,17 +80,18 @@ AFRAME.registerComponent('active-sound', {
     IsActive: { type: 'boolean', default: false } // 初始化完成後是否自動播放
   },
   init: function () {
-    this.el.setAttribute("sound", "src:#MonkeySay; loop:true volume:1")  //增加Sound組件，
-    console.log("音量=" + this.el.components.sound.volume);
+    this.el.setAttribute("sound", "src:#MonkeySay; loop:true; volume:1; autoplay:true  ")  //增加Sound組件，
+
+
 
     window.addEventListener("targetlost-global-event", (event) => { this.el.components.sound.stopSound(); console.log("暫停聲音"); })
-
     window.addEventListener("touchstart", () => { this.data.IsActive = !this.data.IsActive; this.el.setAttribute('active-sound', "IsActive", this.data.IsActive) });
     window.addEventListener("click", () => { this.data.IsActive = !this.data.IsActive; this.el.setAttribute('active-sound', "IsActive", this.data.IsActive) });
 
-    
-    const soundbtn=document.querySelector("#soundbtn");
-    soundbtn.addEventListener("click",()=> this.el.components.sound.playSound())
+    //測試區
+    this.el.addEventListener("sound-loaded", (e) => console.log("載入成功" + e.detail.name));
+    const soundbtn = document.querySelector("#soundbtn");
+    soundbtn.addEventListener("click", () => this.el.components.sound.playSound())
   },
 
 
@@ -105,8 +106,10 @@ AFRAME.registerComponent('active-sound', {
     }
   },
 
+  //測試區2
   tick: function () {
-    const sd=this.el.getAttribute("sound");
+    const sd = this.el.getAttribute("sound");
+    console.log(sd)
   }
 
 });
