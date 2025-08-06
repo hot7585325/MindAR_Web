@@ -24,23 +24,23 @@
 
 <body>
   <div style="position: fixed; z-index:1000;">
-    <!-- <h1 id=infoscale> 數值= </h1> -->
-    <!-- <button id=soundbtn>音效撥放 </button> -->
+    <h1>版本:0308</h1>
   </div>
+
   <a-scene color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false"
     device-orientation-permission-ui="enabled: false" mindar-image="imageTargetSrc:targets.mind; maxTrack: 1"
     cursor="rayOrigin: mouse" raycaster="objects: .clickable" getchild>
 
     <!-- 預載資源 -->
-    <!-- <a-assets> -->
+    <a-assets>
       <!-- <a-asset-item id="Monkey" src="Monkey.glb"></a-asset-item> -->
-      <!-- <audio id="MonkeySay" src="MonkeySay.mp3" preload="auto"></audio> -->
-    <!-- </a-assets> -->
+      <audio id="MonkeySay" src="MonkeySay.mp3" preload="auto"></audio>
+    </a-assets>
 
 
 
     <!-- 聲音組件會與mindar-image-target衝突，所以不掛載在同一個物件上(預計透過事件通知) -->
-    <!-- <a-entity active-sound> </a-entity> -->
+    <a-entity active-sound> </a-entity>
 
     <!-- ar.png= 工具模型 -->
     <a-entity id="modelGroup1" position="0 -0.1 0" scale=".01 .01 .01" mindar-image-target="targetIndex: 0"
@@ -52,40 +52,40 @@
 
     
     <!-- AR12.jpg :Monkey  晃動測試 -->
-    <!-- <a-entity id="modelGroup2" position="0 -0.1 0" scale=".01 .01 .01"
+    <a-entity id="modelGroup2" position="0 -0.1 0" scale=".01 .01 .01"
       mindar-image-target="targetIndex: 1 filterMinCF: 0.2; filterBeta: 0.1; warmupTolerance: 0.2;missTolerance: 4;"
       targetfound-global>
       <a-entity touch-drag-rotate-scale="rotationCoordinate:world" reset-transform="rscale:3 3 3">
         <a-gltf-model src="Monkey.glb" animation-mixer></a-gltf-model>
       </a-entity>
-    </a-entity> -->
+    </a-entity>
 
     <!-- pattern-ar-1.png :Monkey  晃動測試-->
-    <!-- <a-entity id="modelGroup3" position="0 -0.1 0" scale=".01 .01 .01"
+    <a-entity id="modelGroup3" position="0 -0.1 0" scale=".01 .01 .01"
       mindar-image-target="targetIndex: 2 filterMinCF: 0.2; filterBeta: 0.1; warmupTolerance: 0.2;missTolerance: 4;"
       targetfound-global>
       <a-entity touch-drag-rotate-scale="rotationCoordinate:world" reset-transform="rscale:3 3 3">
         <a-gltf-model src="Monkey.glb" animation-mixer></a-gltf-model>
       </a-entity>
-    </a-entity> -->
+    </a-entity>
 
     <!-- pattern-ar-4.png=sphere  辨識度測試-->
-    <!-- <a-entity id="modelGroup4" position="0 -0.1 0" scale=".01 .01 .01"
+    <a-entity id="modelGroup4" position="0 -0.1 0" scale=".01 .01 .01"
       mindar-image-target="targetIndex: 3 filterMinCF: 0.2; filterBeta: 0.1; warmupTolerance: 0.2;missTolerance: 4;"
       targetfound-global>
       <a-entity touch-drag-rotate-scale="rotationCoordinate:world" reset-transform="rscale:1.8 1.8 1.8">
         <a-gltf-model src="A.glb"></a-gltf-model>
       </a-entity>
-    </a-entity> -->
+    </a-entity>
 
     <!-- pattern-ar-6.png =Cylinder 辨識度測試-->
-    <!-- <a-entity id="modelGroup5" position="0 -0.1 0" scale=".01 .01 .01"
+    <a-entity id="modelGroup5" position="0 -0.1 0" scale=".01 .01 .01"
       mindar-image-target="targetIndex: 4 filterMinCF: 0.2; filterBeta: 0.1; warmupTolerance: 0.2;missTolerance: 4;"
       targetfound-global>
       <a-entity touch-drag-rotate-scale="rotationCoordinate:world" reset-transform="rscale:1.2 1.2 1.2">
         <a-gltf-model src="OPA.glb"></a-gltf-model>
       </a-entity>
-    </a-entity> -->
+    </a-entity>
 
 
     <!-- TEAS.jpg :Monkey 觸控行為-->

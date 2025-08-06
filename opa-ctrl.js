@@ -29,14 +29,8 @@ AFRAME.registerComponent('reset-transform',
         this.el.setAttribute("rotation", this.data.rrotation);
         this.el.setAttribute("scale", this.data.rscale)
         console.log("偵測到了，重置旋轉");
-
-        const infoscale = document.querySelector("#infoscale");
-
       })
     },
-    tick: function () {
-      infoscale.textContent = "縮放=" + this.el.object3D.scale.x;
-    }
   });
 //#endregion
 
@@ -91,8 +85,6 @@ AFRAME.registerComponent('active-sound', {
 
     //測試區
     this.el.addEventListener("sound-loaded", (e) => console.log("載入成功" + e.detail.name));
-    const soundbtn = document.querySelector("#soundbtn");
-    soundbtn.addEventListener("click", () => this.el.components.sound.playSound())
   },
 
 
