@@ -33,12 +33,12 @@
 
     <!-- 預載資源 -->
     <a-assets>
-      <a-asset-item id="Monkey" src="Monkey.glb"></a-asset-item>
+      <!-- <a-asset-item id="Monkey" src="Monkey.glb"></a-asset-item> -->
       <!-- <audio id="MonkeySay" src="MonkeySay.mp3" preload="auto"></audio> -->
     </a-assets>
 
 
-    <!-- 聲音組件會與mindar-image-target，所以不掛載在同一個物件上(預計透過事件通知) -->
+    <!-- 聲音組件會與mindar-image-target衝突，所以不掛載在同一個物件上(預計透過事件通知) -->
     <a-entity active-sound> </a-entity>
 
 
@@ -54,7 +54,7 @@
       mindar-image-target="targetIndex: 1 filterMinCF: 0.2; filterBeta: 0.1; warmupTolerance: 0.2;missTolerance: 4;"
       targetfound-global>
       <a-entity touch-drag-rotate-scale="rotationCoordinate:world" reset-transform="rscale:3 3 3">
-        <a-gltf-model src="#Monkey" animation-mixer></a-gltf-model>
+        <a-gltf-model src="Monkey.glb" animation-mixer></a-gltf-model>
       </a-entity>
     </a-entity>
     <!-- pattern-ar-1.png :Monkey  晃動測試-->
@@ -62,7 +62,7 @@
       mindar-image-target="targetIndex: 2 filterMinCF: 0.2; filterBeta: 0.1; warmupTolerance: 0.2;missTolerance: 4;"
       targetfound-global>
       <a-entity touch-drag-rotate-scale="rotationCoordinate:world" reset-transform="rscale:3 3 3">
-        <a-gltf-model src="#Monkey" animation-mixer></a-gltf-model>
+        <a-gltf-model src="Monkey.glb" animation-mixer></a-gltf-model>
       </a-entity>
     </a-entity>
     <!-- pattern-ar-4.png=sphere  辨識度測試-->
@@ -91,7 +91,7 @@
       mindar-image-target="targetIndex: 5  filterMinCF: 0.001; filterBeta: 1000; warmupTolerance: 0.2; missTolerance: 4;"
       targetfound-global>
       <a-entity touch-drag-rotate-scale="rotationCoordinate:world" reset-transform="rscale:3 3 3">
-        <a-gltf-model src="#Monkey" active-ani></a-gltf-model>
+        <a-gltf-model src="Monkey.glb" active-ani></a-gltf-model>
       </a-entity>
     </a-entity>
     <a-camera position="0 0 .2" look-controls-enabled="false"></a-camera>
