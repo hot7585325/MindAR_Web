@@ -12,11 +12,8 @@
   <script src="opa-ctrl.js"> </script>
 
   <!-- 網頁用Console -->
-  <script src="https://cdn.bootcdn.net/ajax/libs/vConsole/3.15.0/vconsole.min.js"></script>
+  <!-- <script src="https://cdn.bootcdn.net/ajax/libs/vConsole/3.15.0/vconsole.min.js"></script> -->
   <!-- <script>  var vConsole = new VConsole();  </script> -->
-
-
-
 
 </head>
 
@@ -31,15 +28,15 @@
 
 
     <!-- 預載資源 -->
-    <!-- <a-assets>
+    <a-assets>
       <a-asset-item id="Monkey" src="Monkey.glb"></a-asset-item>
-      <audio id="MonkeySay" src="MonkeySay.mp3" preload="auto"></audio>
-    </a-assets> -->
+      <!-- <audio id="MonkeySay" src="MonkeySay.mp3" preload="auto"></audio> -->
+    </a-assets>
 
 
 
     <!-- 聲音組件會與mindar-image-target衝突，所以不掛載在同一個物件上(預計透過事件通知) -->
-    <!-- <a-entity active-sound> </a-entity> -->
+    <a-entity active-sound> </a-entity>
 
     <!-- ar.png= 工具模型 -->
     <a-entity id="modelGroup1" position="0 -0.1 0" scale=".01 .01 .01" mindar-image-target="targetIndex: 0"
@@ -55,7 +52,7 @@
       mindar-image-target="targetIndex: 1 filterMinCF: 0.2; filterBeta: 0.1; warmupTolerance: 0.2;missTolerance: 4;"
       targetfound-global>
       <a-entity touch-drag-rotate-scale="rotationCoordinate:world" reset-transform="rscale:3 3 3">
-        <a-gltf-model src="Monkey.glb" animation-mixer></a-gltf-model>
+        <a-gltf-model src="#Monkey" animation-mixer></a-gltf-model>
       </a-entity>
     </a-entity>
 
@@ -64,7 +61,7 @@
       mindar-image-target="targetIndex: 2 filterMinCF: 0.2; filterBeta: 0.1; warmupTolerance: 0.2;missTolerance: 4;"
       targetfound-global>
       <a-entity touch-drag-rotate-scale="rotationCoordinate:world" reset-transform="rscale:3 3 3">
-        <a-gltf-model src="Monkey.glb" animation-mixer></a-gltf-model>
+        <a-gltf-model src="#Monkey" animation-mixer></a-gltf-model>
       </a-entity>
     </a-entity>
 
@@ -93,7 +90,7 @@
       mindar-image-target="targetIndex: 5  filterMinCF: 0.001; filterBeta: 1000; warmupTolerance: 0.2; missTolerance: 4;"
       targetfound-global>
       <a-entity touch-drag-rotate-scale="rotationCoordinate:world" reset-transform="rscale:3 3 3">
-        <a-gltf-model src="Monkey.glb" active-ani></a-gltf-model>
+        <a-gltf-model src="#Monkey" active-ani></a-gltf-model>
       </a-entity>
     </a-entity>
     <a-camera position="0 0 .2" look-controls-enabled="false"></a-camera>

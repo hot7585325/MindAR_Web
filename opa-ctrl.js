@@ -38,9 +38,15 @@ AFRAME.registerComponent('reset-transform',
 AFRAME.registerComponent('active-ani', {
   schema:
   {
-    IsActive: { type: 'boolean', default: false } // 初始化完成後是否自動播放
+    IsActive: { type: 'boolean', default: false }, // 初始化完成後是否自動播放
+    IsLoaded: { type: 'boolean', default: false } // 是否載入完成
   },
   init: function () {
+
+    //監聽模型載入是否完成
+    this.el.addEventListener("model-loaded", () => this.data.IsLoaded = true);
+
+
 
     //獲得targetfound事件，把動畫暫停，
     this.el.setAttribute("animation-mixer", { clip: "Character1_Reference|Take 001|BaseLayer", duration: 10, timeScale: 1 })  //把其他組件加入
@@ -58,6 +64,9 @@ AFRAME.registerComponent('active-ani', {
       this.el.setAttribute("animation-mixer", { timeScale: this.data.IsActive ? 1 : 0 })
     }
   },
+  tick: function () {
+    console.log("模型載入狀態=" + this.data.IsLoaded)
+  },
 
   //控制開關
   change_active: function () {
@@ -72,7 +81,8 @@ AFRAME.registerComponent('active-ani', {
 AFRAME.registerComponent('active-sound', {
   schema:
   {
-    IsActive: { type: 'boolean', default: false } // 初始化完成後是否自動播放
+    IsActive: { type: 'boolean', default: false }, // 初始化完成後是否自動播放
+    IsLoaded: { type: 'boolean', default: false } // 是否載入完成
   },
   init: function () {
     this.el.setAttribute("sound", "src:MonkeySay.mp3; loop:true; volume:1; autoplay:true  ")  //增加Sound組件，
@@ -84,7 +94,7 @@ AFRAME.registerComponent('active-sound', {
     window.addEventListener("click", () => { this.data.IsActive = !this.data.IsActive; this.el.setAttribute('active-sound', "IsActive", this.data.IsActive) });
 
     //測試區
-    this.el.addEventListener("sound-loaded", (e) => console.log("載入成功" + e.detail.name));
+    this.el.addEventListener("sound-loaded",() => this.data.IsLoaded = true);
   },
 
 
@@ -98,6 +108,11 @@ AFRAME.registerComponent('active-sound', {
       }
     }
   },
+tick:function()
+{
+      console.log("音檔載入狀態=" + this.data.IsLoaded)
+}
+
 });
 
 //#endregion
