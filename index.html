@@ -19,11 +19,7 @@
 
 
 
-  <!-- 預載資源 -->
-  <a-assets>
-    <a-asset-item id="Monkey" src="Monkey.glb"></a-asset-item>
-    <audio id="MonkeySay" src="MonkeySay.mp3" preload="auto"></audio>
-  </a-assets>
+
 </head>
 
 <body>
@@ -34,6 +30,13 @@
   <a-scene color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false"
     device-orientation-permission-ui="enabled: false" mindar-image="imageTargetSrc:targets.mind; maxTrack: 1"
     cursor="rayOrigin: mouse" raycaster="objects: .clickable" getchild>
+
+    <!-- 預載資源 -->
+    <a-assets>
+      <a-asset-item id="Monkey" src="Monkey.glb" preload="auto"></a-asset-item>
+      <audio id="MonkeySay" src="MonkeySay.mp3" preload="auto"></audio>
+    </a-assets>
+
 
     <!-- 聲音組件會與mindar-image-target，所以不掛載在同一個物件上(預計透過事件通知) -->
     <a-entity active-sound> </a-entity>
@@ -51,7 +54,7 @@
       mindar-image-target="targetIndex: 1 filterMinCF: 0.2; filterBeta: 0.1; warmupTolerance: 0.2;missTolerance: 4;"
       targetfound-global>
       <a-entity touch-drag-rotate-scale="rotationCoordinate:world" reset-transform="rscale:3 3 3">
-        <a-gltf-model src="Monkey.glb" animation-mixer></a-gltf-model>
+        <a-gltf-model src="#Monkey" animation-mixer></a-gltf-model>
       </a-entity>
     </a-entity>
     <!-- pattern-ar-1.png :Monkey  晃動測試-->
@@ -59,7 +62,7 @@
       mindar-image-target="targetIndex: 2 filterMinCF: 0.2; filterBeta: 0.1; warmupTolerance: 0.2;missTolerance: 4;"
       targetfound-global>
       <a-entity touch-drag-rotate-scale="rotationCoordinate:world" reset-transform="rscale:3 3 3">
-        <a-gltf-model src="Monkey.glb" animation-mixer></a-gltf-model>
+        <a-gltf-model src="#Monkey" animation-mixer></a-gltf-model>
       </a-entity>
     </a-entity>
     <!-- pattern-ar-4.png=sphere  辨識度測試-->

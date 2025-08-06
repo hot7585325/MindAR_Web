@@ -105,13 +105,6 @@ AFRAME.registerComponent('active-sound', {
       }
     }
   },
-
-  //測試區2
-  tick: function () {
-    const sd = this.el.getAttribute("sound");
-    console.log(sd)
-  }
-
 });
 
 //#endregion
