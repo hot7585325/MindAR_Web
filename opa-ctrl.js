@@ -75,7 +75,7 @@ AFRAME.registerComponent('active-sound', {
     IsActive: { type: 'boolean', default: false } // 初始化完成後是否自動播放
   },
   init: function () {
-    this.el.setAttribute("sound", "src:#MonkeySay; loop:true; volume:1; autoplay:true  ")  //增加Sound組件，
+    this.el.setAttribute("sound", "src:MonkeySay.mp3; loop:true; volume:1; autoplay:true  ")  //增加Sound組件，
 
 
 

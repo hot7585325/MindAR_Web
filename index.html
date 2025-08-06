@@ -13,9 +13,7 @@
 
   <!-- 網頁用Console -->
   <script src="https://cdn.bootcdn.net/ajax/libs/vConsole/3.15.0/vconsole.min.js"></script>
-  <script>
-    var vConsole = new VConsole();
-  </script>
+  <script>  var vConsole = new VConsole();  </script>
 
 
 
@@ -24,23 +22,24 @@
 
 <body>
   <div style="position: fixed; z-index:1000;">
-    <h1>版本:0308</h1>
+    <h1>版本:0323</h1>
   </div>
 
   <a-scene color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false"
     device-orientation-permission-ui="enabled: false" mindar-image="imageTargetSrc:targets.mind; maxTrack: 1"
     cursor="rayOrigin: mouse" raycaster="objects: .clickable" getchild>
 
+
     <!-- 預載資源 -->
-    <a-assets>
-      <!-- <a-asset-item id="Monkey" src="Monkey.glb"></a-asset-item> -->
+    <!-- <a-assets>
+      <a-asset-item id="Monkey" src="Monkey.glb"></a-asset-item>
       <audio id="MonkeySay" src="MonkeySay.mp3" preload="auto"></audio>
-    </a-assets>
+    </a-assets> -->
 
 
 
     <!-- 聲音組件會與mindar-image-target衝突，所以不掛載在同一個物件上(預計透過事件通知) -->
-    <a-entity active-sound> </a-entity>
+    <!-- <a-entity active-sound> </a-entity> -->
 
     <!-- ar.png= 工具模型 -->
     <a-entity id="modelGroup1" position="0 -0.1 0" scale=".01 .01 .01" mindar-image-target="targetIndex: 0"
