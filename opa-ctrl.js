@@ -43,10 +43,11 @@ AFRAME.registerComponent('active-ani', {
   },
   init: function () {
 
+    //DOM取得
+    const modelinfo = document.querySelector("#modelinfo");
+
     //監聽模型載入是否完成
     this.el.addEventListener("model-loaded", () => this.data.IsLoaded = true);
-
-
 
     //獲得targetfound事件，把動畫暫停，
     this.el.setAttribute("animation-mixer", { clip: "Character1_Reference|Take 001|BaseLayer", duration: 10, timeScale: 1 })  //把其他組件加入
@@ -65,7 +66,8 @@ AFRAME.registerComponent('active-ani', {
     }
   },
   tick: function () {
-    console.log("模型載入狀態=" + this.data.IsLoaded)
+    // console.log("模型載入狀態=" + this.data.IsLoaded)
+    modelinfo.textContent = "模型載入狀態=" + this.data.IsLoaded;
   },
 
   //控制開關
@@ -85,16 +87,20 @@ AFRAME.registerComponent('active-sound', {
     IsLoaded: { type: 'boolean', default: false } // 是否載入完成
   },
   init: function () {
-    this.el.setAttribute("sound", "src:MonkeySay.mp3; loop:true; volume:1; autoplay:true  ")  //增加Sound組件，
 
+    //DOM取得
+    const soundinfo = document.querySelector("#soundinfo");
 
+    //增加Sound組件
+    this.el.setAttribute("sound", "src:MonkeySay.mp3; loop:true; volume:1; autoplay:true  ")
 
+    //監聽事件
     window.addEventListener("targetlost-global-event", (event) => { this.el.components.sound.stopSound(); console.log("暫停聲音"); })
     window.addEventListener("touchstart", () => { this.data.IsActive = !this.data.IsActive; this.el.setAttribute('active-sound', "IsActive", this.data.IsActive) });
     window.addEventListener("click", () => { this.data.IsActive = !this.data.IsActive; this.el.setAttribute('active-sound', "IsActive", this.data.IsActive) });
 
     //測試區
-    this.el.addEventListener("sound-loaded",() => this.data.IsLoaded = true);
+    this.el.addEventListener("sound-loaded", () => this.data.IsLoaded = true);
   },
 
 
@@ -108,10 +114,11 @@ AFRAME.registerComponent('active-sound', {
       }
     }
   },
-tick:function()
-{
-      console.log("音檔載入狀態=" + this.data.IsLoaded)
-}
+  tick: function () {
+    // console.log("音檔載入狀態=" + this.data.IsLoaded)
+    soundinfo.textContent = "音檔載入狀態=" + this.data.IsLoaded;
+
+  }
 
 });
 
