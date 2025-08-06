@@ -74,7 +74,7 @@ AFRAME.registerComponent('active-ani', {
 //#endregion
 
 //#region 聲音控制(會與image tracking 通圖，使用不同層級避開影響)
-/*
+
 AFRAME.registerComponent('active-sound', {
   schema:
   {
@@ -107,7 +107,7 @@ AFRAME.registerComponent('active-sound', {
     }
   },
 });
-*/
+
 //#endregion
 
 //#region  glb模型動畫名稱打印
