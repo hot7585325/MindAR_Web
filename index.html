@@ -11,6 +11,7 @@
   <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.6.0/dist/aframe-extras.min.js"></script>
   <script src="opa-ctrl.js"> </script>
 
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js' integrity='sha512-NcZdtrT77bJr4STcmsGAESr06BYGE8woZdSdEgqnpyqac7sugNO+Tr4bGwGF3MsnEkGKhU2KL2xh6Ec+BqsaHA==' crossorigin='anonymous'></script>
   <!-- 網頁用Console -->
   <!-- <script src="https://cdn.bootcdn.net/ajax/libs/vConsole/3.15.0/vconsole.min.js"></script> -->
   <!-- <script>  var vConsole = new VConsole();  </script> -->
@@ -19,14 +20,14 @@
 
 <body>
   <div style="position: fixed; z-index:1000; color: white;">
-    <h1>版本:08071203</h1>
+    <!-- <h1>版本:08071203</h1>
     <h4 id="modelinfo">載入狀態</h4>
     <h4 id="soundinfo">載入狀態</h4>
-    <a href="schemaMind.html"> 架構圖</a>
+    <a href="schemaMind.html"> 架構圖</a> -->
   </div>
 
   <a-scene color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false"
-    device-orientation-permission-ui="enabled: false" mindar-image="imageTargetSrc:targets.mind; maxTrack: 1"
+    device-orientation-permission-ui="enabled: false" mindar-image="imageTargetSrc:targets.mind; maxTrack: 1 filterMinCF: 0.0001; filterBeta: 0.0001;"
     cursor="rayOrigin: mouse" raycaster="objects: .clickable" getchild>
 
 
@@ -39,9 +40,10 @@
 
     <!-- 聲音組件會與mindar-image-target衝突，所以不掛載在同一個物件上(預計透過事件通知) -->
     <a-entity active-sound="src:MonkeySay.mp3; targetid :modelGroup6"> </a-entity>
+    <a-entity active-sound="src:smaw6_10.mp3; targetid :modelGroup1;" > </a-entity>
 
     <!-- ar.png= 工具模型 -->
-    <a-entity id="modelGroup1" position="0 -0.1 0" scale=".01 .01 .01" mindar-image-target="targetIndex: 0"
+    <a-entity id="modelGroup1" position="0 -0.1 0" scale=".01 .01 .01" mindar-image-target="targetIndex:"
       targetevent-global>
       <a-entity touch-drag-rotate-scale="rotationCoordinate:world" reset-transform="rscale:0.6 0.6 0.6">
         <a-gltf-model src="ar_all.gltf"></a-gltf-model>
@@ -50,36 +52,28 @@
 
     
     <!-- AR12.jpg :Monkey  晃動測試 -->
-    <a-entity id="modelGroup2" position="0 -0.1 0" scale=".01 .01 .01"
-      mindar-image-target="targetIndex: 1 filterMinCF: 0.2; filterBeta: 0.1; warmupTolerance: 0.2;missTolerance: 4;"
-      targetevent-global>
+    <a-entity id="modelGroup2" position="0 -0.1 0" scale=".01 .01 .01" mindar-image-target="targetIndex: 1;" targetevent-global>
       <a-entity touch-drag-rotate-scale="rotationCoordinate:world" reset-transform="rscale:3 3 3">
         <a-gltf-model src="Monkey.glb" animation-mixer></a-gltf-model>
       </a-entity>
     </a-entity>
 
     <!-- pattern-ar-1.png :Monkey  晃動測試-->
-    <a-entity id="modelGroup3" position="0 -0.1 0" scale=".01 .01 .01"
-      mindar-image-target="targetIndex: 2 filterMinCF: 0.2; filterBeta: 0.1; warmupTolerance: 0.2;missTolerance: 4;"
-      targetevent-global>
+    <a-entity id="modelGroup3" position="0 -0.1 0" scale=".01 .01 .01"  mindar-image-target="targetIndex: 2" targetevent-global>
       <a-entity touch-drag-rotate-scale="rotationCoordinate:world" reset-transform="rscale:3 3 3">
         <a-gltf-model src="Monkey.glb" animation-mixer></a-gltf-model>
       </a-entity>
     </a-entity>
 
     <!-- pattern-ar-4.png=sphere  辨識度測試-->
-    <a-entity id="modelGroup4" position="0 -0.1 0" scale=".01 .01 .01"
-      mindar-image-target="targetIndex: 3 filterMinCF: 0.2; filterBeta: 0.1; warmupTolerance: 0.2;missTolerance: 4;"
-      targetevent-global>
+    <a-entity id="modelGroup4" position="0 -0.1 0" scale=".01 .01 .01" mindar-image-target="targetIndex: 3" targetevent-global>
       <a-entity touch-drag-rotate-scale="rotationCoordinate:world" reset-transform="rscale:1.8 1.8 1.8">
         <a-gltf-model src="A.glb"></a-gltf-model>
       </a-entity>
     </a-entity>
 
     <!-- pattern-ar-6.png =Cylinder 辨識度測試-->
-    <a-entity id="modelGroup5" position="0 -0.1 0" scale=".01 .01 .01"
-      mindar-image-target="targetIndex: 4 filterMinCF: 0.2; filterBeta: 0.1; warmupTolerance: 0.2;missTolerance: 4;"
-      targetevent-global>
+    <a-entity id="modelGroup5" position="0 -0.1 0" scale=".01 .01 .01" mindar-image-target="targetIndex: 4" targetevent-global >
       <a-entity touch-drag-rotate-scale="rotationCoordinate:world" reset-transform="rscale:1.2 1.2 1.2">
         <a-gltf-model src="OPA.glb"></a-gltf-model>
       </a-entity>
@@ -89,8 +83,7 @@
     <!-- TEAS.jpg :Monkey 觸控行為-->
     <!-- 降低 filterMinCF 的值可以減少抖動，而增加 filterBeta 的值可以減少延遲 (預設值分別為 0.001 和 1000)-->
     <a-entity id="modelGroup6" position="0 -0.1 0" scale=".01 .01 .01"
-      mindar-image-target="targetIndex: 5  filterMinCF: 0.001; filterBeta: 1000; warmupTolerance: 0.2; missTolerance: 4;"
-      targetevent-global>
+      mindar-image-target="targetIndex: 5" targetevent-global>
       <a-entity touch-drag-rotate-scale="rotationCoordinate:world" reset-transform="rscale:3 3 3">
         <a-gltf-model src="Monkey.glb" active-ani="src:Character1_Reference|Take 001|BaseLayer"></a-gltf-model>
       </a-entity>

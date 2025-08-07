@@ -63,11 +63,6 @@ AFRAME.registerComponent('active-ani', {
       this.el.setAttribute("animation-mixer", { timeScale: this.data.IsActive ? 1 : 0 })
     }
   },
-  tick: function () {
-    // console.log("模型載入狀態=" + this.data.IsLoaded)
-    modelinfo.textContent = "模型載入狀態=" + this.data.IsLoaded;
-  },
-
   //控制開關
   change_active: function () {
     const mixer = this.el.components['animation-mixer']
@@ -81,7 +76,8 @@ AFRAME.registerComponent('active-ani', {
 AFRAME.registerComponent('active-sound', {
   schema:
   {
-    IsActive: { type: 'boolean', default: false }, // 初始化完成後是否自動播放
+    autoplay: { type: 'boolean', default: false }, // 初始化完成後是否自動播放
+    IsActive: { type: 'boolean', default: false },
     IsLoaded: { type: 'boolean', default: false }, // 是否載入完成
     src: { type: "asset" },
     targetid: { type: "string" } //id名稱
@@ -90,16 +86,14 @@ AFRAME.registerComponent('active-sound', {
 
     this.evtid = null; //設定組件內的私有變數
 
-    //DOM取得
-    const soundinfo = document.querySelector("#soundinfo");
 
     //增加Sound組件
-    this.el.setAttribute("sound", `src:${this.data.src}; loop:true; volume:1; autoplay:false`)//TODO autoplay:false對IOS可能有影響
+    this.el.setAttribute("sound", `src:${this.data.src}; loop:true; volume:1; autoplay:${this.data.autoplay}`)//TODO autoplay:false對IOS可能有影響
 
     //監聽事件
     window.addEventListener("targetfound-global-event", (event) => { this.evtid = event.detail })
     // window.addEventListener("targetlost-global-event", (event) => { this.el.components.sound.stopSound();  this.evtid = null; })
-        window.addEventListener("targetlost-global-event", (event) => { this.el.setAttribute('active-sound', 'IsActive', false);  this.evtid = null; })
+    window.addEventListener("targetlost-global-event", (event) => { this.el.setAttribute('active-sound', 'IsActive', false); this.evtid = null; })
     window.addEventListener("touchstart", () => { this.data.IsActive = !this.data.IsActive; this.el.setAttribute('active-sound', "IsActive", this.data.IsActive) });
     window.addEventListener("click", () => { this.data.IsActive = !this.data.IsActive; this.el.setAttribute('active-sound', "IsActive", this.data.IsActive) });
 
@@ -116,11 +110,6 @@ AFRAME.registerComponent('active-sound', {
         this.el.components.sound.pauseSound();
       }
     }
-  },
-  tick: function () {
-    // console.log("音檔載入狀態=" + this.data.IsLoaded)
-    soundinfo.textContent = "音檔載入狀態=" + this.data.IsLoaded;
-
   }
 
 });
@@ -422,9 +411,6 @@ AFRAME.registerComponent('touch-drag-rotate-scale', {
   }
 });
 //#endregion
-
-
-
 
 //#region 測試冒泡
 
