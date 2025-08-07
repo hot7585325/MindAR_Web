@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<title>Markmap</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+}
+html {
+  font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+}
+#mindmap {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
+.markmap-dark {
+  background: #27272a;
+  color: white;
+}
+</style>
+<link rel="stylesheet" href="https://unpkg.com/markmap-toolbar@0.18.12/dist/style.css">
+</head>
+<body>
+      <a href="index.html"> 回主頁</a>
+<svg id="mindmap"></svg>
+<script src="https://unpkg.com/d3@7.9.0/dist/d3.min.js"></script><script src="https://unpkg.com/markmap-view@0.18.12/dist/browser/index.js"></script><script src="https://unpkg.com/markmap-toolbar@0.18.12/dist/index.js"></script><script>(r => {
+              setTimeout(r);
+            })(function renderToolbar() {
+  const {
+    markmap,
+    mm
+  } = window;
+  const {
+    el
+  } = markmap.Toolbar.create(mm);
+  el.setAttribute('style', 'position:absolute;bottom:20px;right:20px');
+  document.body.append(el);
+})</script><script>((getMarkmap, getOptions, root2, jsonOptions) => {
+              const markmap = getMarkmap();
+              window.mm = markmap.Markmap.create(
+                "svg#mindmap",
+                (getOptions || markmap.deriveOptions)(jsonOptions),
+                root2
+              );
+              if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+                document.documentElement.classList.add("markmap-dark");
+              }
+            })(() => window.markmap,null,{"content":"A frame MindAR","children":[{"content":"\n<h3 data-lines=\"1,2\">&#x554f;&#x984c;</h3>","children":[{"content":"&#x4f7f;&#x7528;<a-asset>&#x9810;&#x8f09;&#xff0c;&#x5982;&#x679c;&#x6a21;&#x578b;&#x904e;&#x5927;&#x6703;&#x9020;&#x6210;&#x6574;&#x9ad4;&#x756b;&#x9762;&#x5ef6;&#x9072;</a-asset>","children":[],"payload":{"tag":"li","lines":"2,3"}},{"content":"&#x4e0d;&#x80fd;&#x628a;audio&#x7d44;&#x4ef6;&#x653e;&#x5728; mindar-image-target &#x5167;&#xff0c;&#x6703;&#x5c0e;&#x81f4;&#x885d;&#x7a81;(&#x50c5;&#x8072;&#x97f3;&#x51fa;&#x73fe;&#xff0c;&#x6a21;&#x578b;&#x4e0d;&#x51fa;&#x73fe;)","children":[],"payload":{"tag":"li","lines":"3,4"}},{"content":"&#x7d44;&#x4ef6;&#x540d;&#x7a31;&#x53ea;&#x80fd;&#x5c0f;&#x5beb;&#xff0c;&#x5927;&#x5beb;&#x4e0d;&#x6703;&#x62b1;&#x932f;&#xff0c;&#x4e5f;&#x6c92;&#x4f5c;&#x7528;","children":[],"payload":{"tag":"li","lines":"4,6"}}],"payload":{"tag":"li","lines":"1,6"}},{"content":"\n<h3 data-lines=\"6,7\">opa-ctrl&#x7d44;&#x4ef6;</h3>","children":[{"content":"\n<p data-lines=\"7,8\">&#x7d44;&#x4ef6;&#xff1a;targetfound-global</p>","children":[{"content":"&#x89e3;&#x91cb;&#xff1a;&#x5c07;mindar-image-target&#x4e8b;&#x4ef6;(targrtFound&#x3001;targrtLost)&#x8f49;&#x70ba;&#x70ba;&#x5168;&#x5c40;&#x4e8b;&#x4ef6;&#xff0c;&#x4e26;&#x651c;&#x5e36;&#x767c;&#x9001;&#x7269;&#x4ef6;&#x7684;id","children":[],"payload":{"tag":"li","lines":"8,9"}},{"content":"&#x4e8b;&#x4ef6;&#x540d;&#x7a31;&#xff1a;targetfound-global-event&#x3001;targetlost-global-event","children":[],"payload":{"tag":"li","lines":"9,11"}}],"payload":{"tag":"li","lines":"7,11"}},{"content":"\n<p data-lines=\"11,12\">&#x7d44;&#x4ef6;&#xff1a;reset-transform</p>","children":[{"content":"&#x89e3;&#x91cb;&#xff1a;&#x76e3;&#x807d;&quot;targetfound-global-event&#x4e8b;&#x4ef6;&#xff0c;&#x5c07;&#x4f4d;&#x79fb;&#x3001;&#x7e2e;&#x653e;&#x91cd;&#x7f6e;","children":[],"payload":{"tag":"li","lines":"12,13"}},{"content":"schema&#xff1a;rrotation(&#x9810;&#x8a2d;=90,0,0)&#x3001;rscale(&#x9810;&#x8a2d;=1,1,1)","children":[],"payload":{"tag":"li","lines":"13,15"}}],"payload":{"tag":"li","lines":"11,15"}},{"content":"\n<p data-lines=\"15,16\">&#x7d44;&#x4ef6;&#xff1a;active-ani</p>","children":[{"content":"&#x89e3;&#x91cb;&#xff1a;&#x4e3b;&#x8981;&#x900f;&#x904e;&#x9ede;&#x64ca;&#x5207;&#x63db;&#x52d5;&#x756b;&#x958b;&#x95dc;&#xff0c;&#x8207;&#x5716;&#x7247;&#x5075;&#x6e2c;&#x5931;&#x6548;&#x5f8c;&#x95dc;&#x9589;&#x52d5;&#x756b;<br>\n&#x81ea;&#x52d5;&#x65b0;&#x589e;animation-mixer&#x7d44;&#x4ef6;<br>\n&#x76e3;&#x807d;click&#x3001;touchstart&#x3001;model-loaded&#x3001;targetlost-global-event&#x7b49;&#x4e8b;&#x4ef6;","children":[],"payload":{"tag":"li","lines":"16,19"}},{"content":"schema&#xff1a;IsActive&#x3001;IsLoaded&#x3001;scr","children":[],"payload":{"tag":"li","lines":"19,21"}}],"payload":{"tag":"li","lines":"15,21"}},{"content":"\n<p data-lines=\"21,22\">&#x7d44;&#x4ef6;&#xff1a;active-sound</p>","children":[{"content":"&#x89e3;&#x91cb;&#xff1a;&#x4e3b;&#x8981;&#x900f;&#x904e;&#x9ede;&#x64ca;&#x5207;&#x63db;sound&#x958b;&#x95dc;&#xff0c;&#x8207;&#x5716;&#x7247;&#x5075;&#x6e2c;&#x5931;&#x6548;&#x5f8c;&#x95dc;&#x9589;sound&#xff0c;&#x6703;&#x900f;&#x904e;&#x5339;&#x914d;id&#x5f8c;&#x624d;&#x64a5;&#x653e;<br>\n&#x81ea;&#x52d5;&#x65b0;&#x589e;sound&#x7d44;&#x4ef6;<br>\n&#x76e3;&#x807d;click&#x3001;touchstart&#x3001;sound-loaded&#x3001;targetlost-global-event&#x7b49;&#x4e8b;&#x4ef6;","children":[],"payload":{"tag":"li","lines":"22,25"}},{"content":"schema&#xff1a;IsActive&#x3001;IsLoaded&#x3001;scr&#x3001;targetid","children":[],"payload":{"tag":"li","lines":"25,26"}},{"content":"&#x554f;&#x984c;&#xff1a;&#x6703;&#x8207;mindar-image-target&#x885d;&#x7a81;&#xff0c;&#x4e0d;&#x80fd;&#x662f;&#x5176;&#x5b50;&#x5c64;&#x7d1a;","children":[],"payload":{"tag":"li","lines":"26,28"}}],"payload":{"tag":"li","lines":"21,28"}},{"content":"\n<p data-lines=\"28,29\">&#x7d44;&#x4ef6;&#xff1a;touch-drag-rotate-scale</p>","children":[{"content":"&#x89e3;&#x91cb;&#xff1a;Gemini&#x5beb;&#x7684;&#x65cb;&#x8f49;&#x7e2e;&#x653e;&#x63a7;&#x7f6e;&#xff0c;&#x53ef;&#x4ee5;&#x5207;&#x63db;&#x70ba;&#x4e16;&#x754c;&#x5ea7;&#x6a19;&#x8207;&#x81ea;&#x8eab;&#x5ea7;&#x6a19;&#x7684;&#x65cb;&#x8f49;&#x6a21;&#x5f0f;","children":[],"payload":{"tag":"li","lines":"29,30"}},{"content":"schema&#xff1a;rotationSpeed&#x3001;scaleSpeed&#x3001;rotationCoordinate&#x3001;enabled","children":[],"payload":{"tag":"li","lines":"30,32"}}],"payload":{"tag":"li","lines":"28,32"}}],"payload":{"tag":"li","lines":"6,32"}}],"payload":{"tag":"h1","lines":"0,1"}},{})</script>
+</body>
+</html>

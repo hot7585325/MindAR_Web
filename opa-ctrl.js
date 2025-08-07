@@ -1,15 +1,13 @@
 
 //#region 需要與mindar-image-target掛在同一個Entity上，透過他轉為全域事件
-AFRAME.registerComponent('targetfound-global', {
+AFRAME.registerComponent('targetevent-global', {
   init: function () {
     this.el.addEventListener("targetFound", (event) => {
-      window.dispatchEvent(new CustomEvent("targetfound-global-event", { detail: event.detail }))
-      console.log("發送全域的targetFound");
+      window.dispatchEvent(new CustomEvent("targetfound-global-event", { detail: this.el.id }))
     })
 
     this.el.addEventListener("targetLost", (event) => {
-      window.dispatchEvent(new CustomEvent("targetlost-global-event", { detail: event.detail }))
-      console.log("發送全域的targetLost");
+      window.dispatchEvent(new CustomEvent("targetlost-global-event", { detail: this.el.id }))
     })
 
   }
@@ -39,7 +37,8 @@ AFRAME.registerComponent('active-ani', {
   schema:
   {
     IsActive: { type: 'boolean', default: false }, // 初始化完成後是否自動播放
-    IsLoaded: { type: 'boolean', default: false } // 是否載入完成
+    IsLoaded: { type: 'boolean', default: false }, // 是否載入完成
+    src: { type: "asset" }
   },
   init: function () {
 
@@ -50,7 +49,7 @@ AFRAME.registerComponent('active-ani', {
     this.el.addEventListener("model-loaded", () => this.data.IsLoaded = true);
 
     //獲得targetfound事件，把動畫暫停，
-    this.el.setAttribute("animation-mixer", { clip: "Character1_Reference|Take 001|BaseLayer", duration: 10, timeScale: 1 })  //把其他組件加入
+    this.el.setAttribute("animation-mixer", { clip: this.data.src, duration: 10, timeScale: 1 })  //把其他組件加入
     window.addEventListener("touchstart", this.change_active.bind(this))  //可以用bind綁定
     window.addEventListener("click", (event) => { this.change_active(); }); //也可以用箭頭函式
 
@@ -61,7 +60,6 @@ AFRAME.registerComponent('active-ani', {
   update: function (OldData) {
 
     if (OldData.IsActive != this.data.IsActive) {
-      console.log("動畫狀態=" + this.data.IsActive);
       this.el.setAttribute("animation-mixer", { timeScale: this.data.IsActive ? 1 : 0 })
     }
   },
@@ -84,18 +82,24 @@ AFRAME.registerComponent('active-sound', {
   schema:
   {
     IsActive: { type: 'boolean', default: false }, // 初始化完成後是否自動播放
-    IsLoaded: { type: 'boolean', default: false } // 是否載入完成
+    IsLoaded: { type: 'boolean', default: false }, // 是否載入完成
+    src: { type: "asset" },
+    targetid: { type: "string" } //id名稱
   },
   init: function () {
+
+    this.evtid = null; //設定組件內的私有變數
 
     //DOM取得
     const soundinfo = document.querySelector("#soundinfo");
 
     //增加Sound組件
-    this.el.setAttribute("sound", "src:MonkeySay.mp3; loop:true; volume:1; autoplay:true  ")
+    this.el.setAttribute("sound", `src:${this.data.src}; loop:true; volume:1; autoplay:false`)//TODO autoplay:false對IOS可能有影響
 
     //監聽事件
-    window.addEventListener("targetlost-global-event", (event) => { this.el.components.sound.stopSound(); console.log("暫停聲音"); })
+    window.addEventListener("targetfound-global-event", (event) => { this.evtid = event.detail })
+    // window.addEventListener("targetlost-global-event", (event) => { this.el.components.sound.stopSound();  this.evtid = null; })
+        window.addEventListener("targetlost-global-event", (event) => { this.el.setAttribute('active-sound', 'IsActive', false);  this.evtid = null; })
     window.addEventListener("touchstart", () => { this.data.IsActive = !this.data.IsActive; this.el.setAttribute('active-sound', "IsActive", this.data.IsActive) });
     window.addEventListener("click", () => { this.data.IsActive = !this.data.IsActive; this.el.setAttribute('active-sound', "IsActive", this.data.IsActive) });
 
@@ -103,10 +107,9 @@ AFRAME.registerComponent('active-sound', {
     this.el.addEventListener("sound-loaded", () => this.data.IsLoaded = true);
   },
 
-
+  //假如事件發送的id 與targetid 相同才能啟用
   update: function (oldDate) {
-    if (oldDate != this.data) {
-      console.log("聲音狀態=" + this.data.IsActive);
+    if (oldDate != this.data && this.data.targetid === this.evtid) {
       if (this.data.IsActive) {
         this.el.components.sound.playSound();
       } else {
